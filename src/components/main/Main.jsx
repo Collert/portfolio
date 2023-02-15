@@ -54,8 +54,12 @@ export default function Main() {
         }
 
         function scroll(e) {
-            const moveBy = e.deltaX + e.deltaY > 0 ? -10 : 10
-            console.log(e)
+            let moveBy;
+            if ((e.deltaX + e.deltaY) % 100 === 0) {
+                moveBy = e.deltaX + e.deltaY > 0 ? -10 : 10
+            } else {
+                moveBy = -(e.deltaX + e.deltaY)
+            }
             setSliderX(prev => {
                 let percentage = (prev + moveBy) / windowMaxDelta * 100
                 if (percentage <= -100) {
