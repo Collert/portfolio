@@ -1,3 +1,7 @@
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -5,6 +9,28 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  height: 100.001vh;
+  width: 100.001vw;
+  background-color: #242424;
+  overflow: hidden;
+}
+
+*::-webkit-scrollbar {
+  display: none;
+}
+
+img, .track {
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+:root {
+  --card-width: 40vmin;
+  --move-track: 0;
+}
+
+#root {
+  height: 100%;
 }
 
 code {

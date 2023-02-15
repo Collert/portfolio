@@ -1,0 +1,34 @@
+@import url("../../index.css");
+
+* {
+    color: white;
+}
+
+main {
+    display: grid;
+    place-items: center;
+    height: 100%;
+}
+
+.track {
+    display: flex;
+    gap: 1rem;
+    position: absolute;
+    transform: translateX(calc(var(--move-track) + 50% - (var(--card-width)/2)));
+    /* transition: transform 10ms ease; */
+}
+
+.track>img {
+    width: var(--card-width);
+    height: 50vmin;
+    object-fit: cover;
+    object-position: calc(-1 * var(--move-track)) center;
+    cursor: pointer;
+}
+
+.mousetracker {
+    position: absolute;
+    color: white;
+    top: 0;
+    left: 0;
+}
