@@ -8,17 +8,47 @@ export default function Card(props) {
         objectPosition: `center`
     })
 
-    React.useEffect(() => {
-        setTimeout(() => {
-            const elementOffset = thisElement.current.getBoundingClientRect();
-            let percentage = (window.innerWidth - (elementOffset.left + (elementOffset.width / 2))) / window.innerWidth * 100
-            percentage = Math.max(percentage, 0)
-            percentage = Math.min(percentage, 100)
-            setStyles({
-                objectPosition: `${percentage}% center`
-            })
-        }, 0);
-    },[props.sliderPercentage])
+    const expandCard = React.useCallback(() => {
+    if (props.maximizedCard === null) {
+        props.setMinimizedTrack(true)
+        props.setMaximizedCard({...props});
+    } else {
+        props.setMinimizedTrack(false)
+        props.setMaximizedCard(null);
+    }
+    },[props]);
 
-    return <img ref={thisElement} style={styles} alt='' draggable='false' src='https://images.unsplash.com/photo-1676012101293-24fc7098d530?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80'/>
+    // setTimeout(() => {
+    //     setStyles({
+    //         objectPosition: `${thisElement.style.objectPosition.slice(0, -7)} center`
+    //     })
+    // }, 0);
+
+    React.useEffect(() => {
+        if (!props.maximizedCard) {
+            setTimeout(() => {
+                const offset = thisElement.current.getBoundingClientRect()
+                let percentage = (window.innerWidth - (offset.left + (offset.width / 2))) / window.innerWidth * 100
+                percentage = Math.max(percentage, 0)
+                percentage = Math.min(percentage, 100)
+                setStyles({
+                    objectPosition: `${percentage}% center`
+                })
+            }, 0);
+        }
+    },[props.maximizedCard, props.sliderPercentage])
+
+    return (
+        <div className={props.maximizedCard && props.maximizedCard.id === props.id ? 'to-expand' : ''}>
+            <img 
+                id={props.id} 
+                onClick={expandCard} 
+                ref={thisElement} 
+                style={styles} 
+                alt='' 
+                draggable='false' 
+                src={props.imgSrc}
+            />
+        </div>
+    )
 }

@@ -1,13 +1,9 @@
 @import url("../../index.css");
 
-* {
-    color: white;
-}
-
 main {
     display: grid;
     place-items: center;
-    height: 100%;
+    height: 100vh;
 }
 
 .track {
@@ -18,12 +14,189 @@ main {
     /* transition: transform 10ms ease; */
 }
 
-.track>img {
+.track img {
     width: var(--card-width);
-    height: 50vmin;
+    height: var(--card-height);
     object-fit: cover;
     object-position: calc(-1 * var(--move-track)) center;
     cursor: pointer;
+}
+
+@keyframes minimize-track {
+    from {
+        transform: translateX(calc(var(--move-track) + 50% - (var(--card-width)/2))) scale(1);
+        bottom: 25vh;
+    }
+    to {
+        transform: translate(0, 40vh) scale(0.3);
+        bottom: 25vh;
+    }
+}
+
+@keyframes maximize-track {
+    from {
+        transform: translate(0, 40vh) scale(0.3);
+        bottom: 25vh;
+    }
+    to {
+        transform: translateX(calc(var(--move-track) + 50% - (var(--card-width)/2))) scale(1);
+        bottom: 25vh;
+    }
+}
+
+@keyframes minimize-track-img {
+    from {
+        object-position: calc(-1 * var(--move-track)) center;
+    }
+    to {
+        object-position: center!important;
+    }
+}
+
+.track.minimized {
+    animation: minimize-track 1s var(--animation-timing-function);
+    transform: scale(0.3);
+    bottom: calc(0px - (0.3 * var(--card-height)));
+}
+
+.track.minimized img {
+    object-position: center!important;
+    animation: minimize-track-img 1.5s var(--animation-timing-function);
+}
+
+@keyframes expand-card {
+    from {
+        height: var(--card-height);
+        width: var(--card-width);
+        left: var(--expanded-card-start);
+        transform: none;
+        background-position: var(--expanding-image-object-pos) center;
+    }
+    75% {
+        height: var(--card-height);
+        width: var(--card-width);
+        left: var(--expanded-card-start);
+        margin-left: 0;
+        background-position: center;
+        transform: translateX(calc(50vw - (var(--card-width)/2) - var(--expanded-card-start)));
+    }
+    99.99% {
+        height: 100dvh;
+        width: 100vw;
+        left: var(--expanded-card-start);
+        margin-left: calc(-1 * (50vw - (var(--card-width)/2)));
+        background-position: center;
+        transform: translateX(calc(50vw - (var(--card-width)/2) - var(--expanded-card-start)));
+    }
+    to {
+        height: 100dvh;
+        width: 100vw;
+        margin-left: 0;
+        left: 0;
+        transform: none;
+    }
+}
+
+@keyframes de-expand-card {
+    from {
+        height: 100dvh;
+        width: 100vw;
+    }
+    to {
+        height: var(--card-height);
+        width: var(--card-width);
+    }
+}
+
+.expanded,
+.de-expanded {
+    position: absolute;
+    height: 100dvh;
+    width: 100vw;
+    background-image: var(--expanded-card-picture);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    animation: expand-card var(--animation-duration) var(--animation-timing-function);
+}
+
+.de-expanded {
+    animation: de-expand-card var(--animation-duration) var(--animation-timing-function);
+}
+
+.track.maximized {
+    animation: maximize-track 1s var(--animation-timing-function);
+}
+
+@keyframes to-expand {
+    from {
+        opacity: 1;
+    }
+    0.01% {
+        opacity: 0;
+    }
+    74% {
+        opacity: 0;
+    }
+    75% {
+        opacity: 1;
+        transform: translateY(100%);
+    }
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@keyframes to-de-expand {
+    from {
+        opacity: 1;
+    }
+    20% {
+        opacity: 0;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+.to-expand {
+    overflow: hidden;
+}
+
+.to-expand>img {
+    animation: to-expand 2s ease!important;
+}
+
+.track.maximized>.to-expand>img {
+    animation: to-de-expand var(--animation-duration) var(--animation-timing-function)!important;
+}
+
+.title-screen {
+    display: grid;
+    place-items: center;
+}
+
+.exp-card-title {
+    animation: title-box var(--animation-duration);
+    overflow: hidden;
+}
+
+@keyframes title-reveal { from {transform: translateY(100%);} to {transform: translateY(0);}}
+@keyframes title-hide { from {opacity: 1;} to {opacity: 0;}}
+@keyframes title-box { from{opacity: 0;} 99.99% {opacity: 0;} to {opacity: 1;}}
+
+.exp-card-title>*.hide {
+    opacity: 0;
+    animation: title-hide 500ms ease;
+}
+.exp-card-title>* {
+    font-size: 40px;
+    font-weight: 400;
+    letter-spacing: 0.2rem;
+    text-decoration: none;
+    display: block;
+    animation: title-reveal 1s var(--animation-timing-function) var(--animation-duration);
 }
 
 .mousetracker {

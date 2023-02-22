@@ -1,18 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
 html {
   scroll-behavior: smooth;
 }
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family: 'Inter', system-ui, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  height: 100.001vh;
-  width: 100.001vw;
+  height: 100vh;
+  width: 100vw;
   background-color: #242424;
   overflow: hidden;
+  color: var(--text-color);
 }
 
 *::-webkit-scrollbar {
@@ -26,7 +29,12 @@ img, .track {
 
 :root {
   --card-width: 40vmin;
+  --card-height: 50vmin;
+  --animation-duration: 1.5s; /* Keep this in seconds, it gets parsed in js later */
   --move-track: 0;
+  --animation-timing-function: cubic-bezier(.24,.33,0,1.07);
+  --text-color: white;
+  --a-animation-duration: 250ms;
 }
 
 #root {

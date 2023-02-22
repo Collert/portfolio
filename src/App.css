@@ -1,38 +1,56 @@
+@import url("./index.css");
 .App {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+header {
+  position: absolute;
+  top: 0;
+  width: 100dvw;
+  display: grid;
+  place-items: center;
+  z-index: 3;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+header>nav {
+  display: grid;
+  place-items: center;
+  gap: 2rem;
+  grid-template-columns: repeat(2, 1fr);
+  padding: 3vmin;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+header>nav>a {
+  font-size: large;
+  font-weight: 600;
+  opacity: .5;
+  transition: opacity var(--a-animation-duration) ease;
+  text-decoration: none;
 }
 
-.App-link {
-  color: #61dafb;
+header>nav>a.curpage,
+header>nav>a:hover {
+  opacity: 1;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+a {
+  position: relative;
+  color: var(--text-color);
+} 
+
+a::before {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: var(--text-color);
+  transform: scaleX(0);
+  transition: transform var(--a-animation-duration) ease;
+}
+
+a:hover::before {
+  transform: scaleX(1);
 }
