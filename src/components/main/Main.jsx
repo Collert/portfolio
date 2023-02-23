@@ -2,6 +2,7 @@ import React from 'react'
 import Card from './Card'
 import ExpandedCard from './ExpandedCard'
 import './Main.css'
+import '../../transitions.css'
 
 export default function Main(props) {
 
@@ -131,6 +132,7 @@ export default function Main(props) {
             <div className={`track ${minimizedTrack ? 'minimized' : 'maximized'}`}>
                 {cards}
             </div>
+            <div className='blind'></div>
         </main>
     )
 }

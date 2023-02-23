@@ -1,0 +1,42 @@
+@import url("./index.css");
+
+.blind {
+    position: absolute;
+    background-color: black;
+    background-image: url('https://images.unsplash.com/photo-1677061856903-f8c1f20c5ff0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    width: 100vw;
+    transform: translateY(100vh);
+}
+
+[class*='page'],
+[class*='page'] .blind {
+    transition: transform var(--transition-animation-duration) ease, opacity var(--transition-animation-duration) ease;
+}
+
+.page-exit .blind {
+    transform: translateY(100vh);
+}
+
+.page-exit-active .blind {
+    transform: translateY(0vh);
+}
+
+.page-exit:not(:has(.blind)) {
+    opacity: 1;
+}
+
+.page-exit-active:not(:has(.blind)) {
+    opacity: 0;
+}
+
+.page-enter:has(.blind) {
+    opacity: 0;
+}
+
+.page-enter:has(.blind) {
+    opacity: 1;
+}

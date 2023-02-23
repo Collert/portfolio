@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export default function ExpandedCard(props) {
 
@@ -19,7 +20,8 @@ export default function ExpandedCard(props) {
 
     const animationDuration = (parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--animation-duration').slice(1, -1)) * 1000) - 10;
 
-    function shrinkCard() {
+    function shrinkCard(e) {
+        e.stopPropagation()
         props.setFirstInteraction(true)
         props.setMinimizedTrack(false)
         setExpanded(false)
@@ -31,7 +33,8 @@ export default function ExpandedCard(props) {
     return (
         <div onClick={shrinkCard} className={`${expanded ? 'expanded' : 'de-expanded'} title-screen`}>
             <div className='exp-card-title'>
-                <a className={expanded? '' : 'hide'} href='/'>Test title</a>
+                <Link className={expanded? '' : 'hide'} to='/test'>Test title</Link>
+                {/* <a className={expanded? '' : 'hide'} href='/'>Test title</a> */}
             </div>
         </div>
     )

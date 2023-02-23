@@ -3,7 +3,7 @@
 main {
     display: grid;
     place-items: center;
-    height: 100dvh;
+    min-height: 100dvh;
 }
 
 .track {

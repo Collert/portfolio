@@ -18,6 +18,10 @@ body {
   color: var(--text-color);
 }
 
+body:has(.project) {
+  overflow: auto;
+}
+
 *::-webkit-scrollbar {
   display: none;
 }
@@ -35,6 +39,7 @@ img, .track {
   --animation-timing-function: cubic-bezier(.24,.33,0,1.07);
   --text-color: white;
   --a-animation-duration: 250ms;
+  --transition-animation-duration: 500ms; /* Keep this in ms, it gets parsed in js later */
 }
 
 #root {
