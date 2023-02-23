@@ -12,6 +12,7 @@ export default function Main(props) {
     const [scroll, setScroll] = React.useState(0)
     const [maximizedCard, setMaximizedCard] = React.useState(null)
     const [minimizedTrack, setMinimizedTrack] = React.useState(false)
+    const [firstInteraction, setFirstInteraction] = React.useState(true)
 
     const scrolls = React.useCallback((e) => {
         let moveBy;
@@ -23,13 +24,16 @@ export default function Main(props) {
         setSliderX(prev => {
             let percentage = (prev + moveBy) / windowMaxDelta * 100
             if (percentage <= -100) {
-                return prev
+                return -windowMaxDelta
             } else if (percentage >= 0) {
                 return 0
             } else {
                 return prev + moveBy
             }
         })
+        setTimeout(() => {
+            setFirstInteraction(false)
+        }, 100);
         setScroll(prev => prev + moveBy)
     },[windowMaxDelta])
 
@@ -52,7 +56,7 @@ export default function Main(props) {
                 setSliderX(prev => {
                     let percentage = (prev + mouseDelta) / windowMaxDelta * 100
                     if (percentage <= -100) {
-                        return prev
+                        return -windowMaxDelta
                     } else if (percentage >= 0) {
                         return 0
                     } else {
@@ -64,6 +68,9 @@ export default function Main(props) {
                     wait = false
                 }, 1000 / timesPerSec);
             }
+            setTimeout(() => {
+                setFirstInteraction(false)
+            }, 100);
         }
     },[isMouseDown, startPoint, windowMaxDelta])
 
@@ -98,6 +105,9 @@ export default function Main(props) {
             setMinimizedTrack={setMinimizedTrack}
             sliderPercentage={sliderX / windowMaxDelta * 100}
             imgSrc={card.imgSrc}
+            minimizedTrack={minimizedTrack}
+            firstInteraction={firstInteraction}
+            setFirstInteraction={setFirstInteraction}
         />
     ))
 
@@ -116,6 +126,7 @@ export default function Main(props) {
                     imgSrc={maximizedCard.imgSrc}
                     setSliderX={setSliderX}
                     cardsQty={cards.length}
+                    setFirstInteraction={setFirstInteraction}
                 />}
             <div className={`track ${minimizedTrack ? 'minimized' : 'maximized'}`}>
                 {cards}

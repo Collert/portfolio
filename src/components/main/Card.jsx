@@ -25,18 +25,20 @@ export default function Card(props) {
     // }, 0);
 
     React.useEffect(() => {
-        if (!props.maximizedCard) {
-            setTimeout(() => {
-                const offset = thisElement.current.getBoundingClientRect()
-                let percentage = (window.innerWidth - (offset.left + (offset.width / 2))) / window.innerWidth * 100
-                percentage = Math.max(percentage, 0)
-                percentage = Math.min(percentage, 100)
-                setStyles({
-                    objectPosition: `${percentage}% center`
-                })
-            }, 0);
-        }
-    },[props.maximizedCard, props.sliderPercentage])
+        setTimeout(() => {
+            const offset = thisElement.current.getBoundingClientRect()
+            let percentage = (window.innerWidth - (offset.left + (offset.width / 2))) / window.innerWidth * 100
+            percentage = Math.max(percentage, 0)
+            percentage = Math.min(percentage, 100)
+            setStyles({
+                objectPosition: `${percentage}% center`
+            })
+        }, 0);
+    },[
+        // props.maximizedCard, 
+        props.sliderPercentage, 
+        props.minimizedTrack,
+    ])
 
     return (
         <div className={props.maximizedCard && props.maximizedCard.id === props.id ? 'to-expand' : ''}>
@@ -48,6 +50,7 @@ export default function Card(props) {
                 alt='' 
                 draggable='false' 
                 src={props.imgSrc}
+                className={props.firstInteraction ? 'firstInteraction' : ''}
             />
         </div>
     )

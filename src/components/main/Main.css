@@ -3,14 +3,14 @@
 main {
     display: grid;
     place-items: center;
-    height: 100vh;
+    height: 100dvh;
 }
 
 .track {
     display: flex;
     gap: 1rem;
     position: absolute;
-    transform: translateX(calc(var(--move-track) + 50% - (var(--card-width)/2)));
+    transform: translateX(calc(var(--move-track) + 50% - (var(--card-width)/2) - 5px));
     /* transition: transform 10ms ease; */
 }
 
@@ -49,7 +49,7 @@ main {
         object-position: calc(-1 * var(--move-track)) center;
     }
     to {
-        object-position: center!important;
+        object-position: center center!important;
     }
 }
 
@@ -59,8 +59,12 @@ main {
     bottom: calc(0px - (0.3 * var(--card-height)));
 }
 
+.track img.firstInteraction {
+    transition: object-position 100ms ease;
+}
+
 .track.minimized img {
-    object-position: center!important;
+    object-position: center center!important;
     animation: minimize-track-img 1.5s var(--animation-timing-function);
 }
 
@@ -102,9 +106,15 @@ main {
         height: 100dvh;
         width: 100vw;
     }
+    75% {
+        height: var(--card-height);
+        width: var(--card-width);
+        /* opacity: 1; */
+    }
     to {
         height: var(--card-height);
         width: var(--card-width);
+        /* opacity: 0; */
     }
 }
 
@@ -121,7 +131,12 @@ main {
 }
 
 .de-expanded {
+    position: initial;
     animation: de-expand-card var(--animation-duration) var(--animation-timing-function);
+}
+
+.track.maximized img {
+    object-position: calc(-1 * var(--move-track)) center;
 }
 
 .track.maximized {

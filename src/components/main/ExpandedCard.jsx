@@ -12,14 +12,17 @@ export default function ExpandedCard(props) {
         document.documentElement.style.setProperty('--expanded-card-start', `${elementOffset.left}px`)
         document.documentElement.style.setProperty('--expanding-image-object-pos', objectPos)
         document.documentElement.style.setProperty('--expanded-card-picture', `url('${imgSrc}')`)
+        setTimeout(() => {
+            props.setSliderX(props.windowMaxDelta / (props.cardsQty - 1) * (parseInt(props.id) - 1) * -1)
+        }, 100);
     },[props])
 
-    const animationDuration = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--animation-duration').slice(1, -1)) * 1000;
+    const animationDuration = (parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--animation-duration').slice(1, -1)) * 1000) - 10;
 
     function shrinkCard() {
+        props.setFirstInteraction(true)
         props.setMinimizedTrack(false)
         setExpanded(false)
-        props.setSliderX(props.windowMaxDelta / (props.cardsQty - 1) * (parseInt(props.id) - 1) * -1)
         setTimeout(() => {
             props.setMaximizedCard(null)
         }, animationDuration);
