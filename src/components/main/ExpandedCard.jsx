@@ -34,7 +34,6 @@ export default function ExpandedCard(props) {
         <div onClick={shrinkCard} className={`${expanded ? 'expanded' : 'de-expanded'} title-screen`}>
             <div className='exp-card-title'>
                 <Link className={expanded? '' : 'hide'} to='/test'>Test title</Link>
-                {/* <a className={expanded? '' : 'hide'} href='/'>Test title</a> */}
             </div>
         </div>
     )

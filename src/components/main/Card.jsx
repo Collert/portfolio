@@ -18,12 +18,6 @@ export default function Card(props) {
     }
     },[props]);
 
-    // setTimeout(() => {
-    //     setStyles({
-    //         objectPosition: `${thisElement.style.objectPosition.slice(0, -7)} center`
-    //     })
-    // }, 0);
-
     React.useEffect(() => {
         setTimeout(() => {
             const offset = thisElement.current.getBoundingClientRect()
@@ -35,7 +29,6 @@ export default function Card(props) {
             })
         }, 0);
     },[
-        // props.maximizedCard, 
         props.sliderPercentage, 
         props.minimizedTrack,
     ])
