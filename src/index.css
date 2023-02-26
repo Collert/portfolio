@@ -40,6 +40,7 @@ img, .track {
   --text-color: white;
   --a-animation-duration: 250ms;
   --transition-animation-duration: 500ms; /* Keep this in ms, it gets parsed in js later */
+  --blind-cover-img: ;
 }
 
 #root {

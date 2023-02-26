@@ -3,7 +3,7 @@
 .blind {
     position: absolute;
     background-color: black;
-    background-image: url('https://images.unsplash.com/photo-1677061856903-f8c1f20c5ff0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80');
+    background-image: var(--blind-cover-img);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -39,4 +39,58 @@
 
 .page-enter:has(.blind) {
     opacity: 1;
+}
+
+.expanded[class*='card-swap'] {
+    animation: none;
+    transition: transform 500ms ease;
+}
+
+@keyframes swap-card {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+main:has([class*='card-swap']) .track {
+    z-index: 15;
+}
+
+.card-swap-enter {
+    transform: translateX(100vw);
+    z-index: 10;
+}
+
+.card-swap-enter-active {
+    transform: translateX(0vw);
+    z-index: 10;
+}
+
+.card-swap-enter-done {
+    transform: translateX(0);
+}
+
+.card-swap-enter-active ~ .expanded {
+    display: none;
+}
+
+.card-swap-exit,
+.card-swap-exit-active,
+.card-swap-exit-done {
+    opacity: 0;
+
+}
+
+[class*='card-swap-enter']>.exp-card-title {
+    animation: title-box 500ms, title-box-overflow 1s linear 500ms;
+}
+
+[class*='card-swap-enter']>.exp-card-title>* {
+    animation: title-reveal 1s var(--animation-timing-function) 500ms;
+}
+[class*='card-swap-enter']>.exp-card-title>*::before {
+    animation: expand-shadow 1.5s ease 500ms backwards;
 }

@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 export default function ExpandedCard(props) {
 
     const [expanded, setExpanded] = React.useState(true)
+    const [styles, setStyles] = React.useState({})
 
     React.useEffect(() => {
         const {imgSrc, id} = props
@@ -12,7 +13,8 @@ export default function ExpandedCard(props) {
         const elementOffset = refElement.getBoundingClientRect()
         document.documentElement.style.setProperty('--expanded-card-start', `${elementOffset.left}px`)
         document.documentElement.style.setProperty('--expanding-image-object-pos', objectPos)
-        document.documentElement.style.setProperty('--expanded-card-picture', `url('${imgSrc}')`)
+        setStyles({backgroundImage: `url('${imgSrc}')`})
+        // document.documentElement.style.setProperty('--expanded-card-picture', `url('${imgSrc}')`)
         setTimeout(() => {
             props.setSliderX(props.windowMaxDelta / (props.cardsQty - 1) * (parseInt(props.id) - 1) * -1)
         }, 100);
@@ -31,9 +33,9 @@ export default function ExpandedCard(props) {
     }
 
     return (
-        <div onClick={shrinkCard} className={`${expanded ? 'expanded' : 'de-expanded'} title-screen`}>
+        <div style={styles} onClick={shrinkCard} className={`${expanded ? 'expanded' : 'de-expanded'} title-screen`}>
             <div className='exp-card-title'>
-                <Link className={expanded? '' : 'hide'} to='/test'>Test title</Link>
+                <Link className={expanded? '' : 'hide'} to='/test'>{props.title}</Link>
             </div>
         </div>
     )

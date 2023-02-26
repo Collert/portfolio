@@ -3,6 +3,7 @@ import Card from './Card'
 import ExpandedCard from './ExpandedCard'
 import './Main.css'
 import '../../transitions.css'
+import { SwitchTransition, CSSTransition } from 'react-transition-group'
 
 export default function Main(props) {
 
@@ -109,6 +110,7 @@ export default function Main(props) {
             minimizedTrack={minimizedTrack}
             firstInteraction={firstInteraction}
             setFirstInteraction={setFirstInteraction}
+            title={card.title}
         />
     ))
 
@@ -116,19 +118,25 @@ export default function Main(props) {
         <main>
             <div className='mousetracker'> SliderX: {sliderX} Mouse X: { (sliderX / windowMaxDelta) * 100 }%   window: {window.innerWidth} Scroll: {scroll} sliderX:{sliderX / windowMaxDelta}</div>
             {maximizedCard && 
-                <ExpandedCard 
-                    maximizedCard={maximizedCard} 
-                    id={maximizedCard.id}
-                    windowMaxDelta={windowMaxDelta}
-                    setMaximizedCard={setMaximizedCard} 
-                    setMinimizedTrack={setMinimizedTrack}
-                    handleClick={maximizedCard.setMaximizedCard}
-                    sliderPercentage={maximizedCard.sliderPercentage}
-                    imgSrc={maximizedCard.imgSrc}
-                    setSliderX={setSliderX}
-                    cardsQty={cards.length}
-                    setFirstInteraction={setFirstInteraction}
-                />}
+            <SwitchTransition mode='in-out'>
+                <CSSTransition key={maximizedCard.id} classNames='card-swap' timeout={800}>
+                    <ExpandedCard 
+                        maximizedCard={maximizedCard} 
+                        id={maximizedCard.id}
+                        windowMaxDelta={windowMaxDelta}
+                        setMaximizedCard={setMaximizedCard} 
+                        setMinimizedTrack={setMinimizedTrack}
+                        handleClick={maximizedCard.setMaximizedCard}
+                        sliderPercentage={maximizedCard.sliderPercentage}
+                        imgSrc={maximizedCard.imgSrc}
+                        setSliderX={setSliderX}
+                        cardsQty={cards.length}
+                        setFirstInteraction={setFirstInteraction}
+                        title={maximizedCard.title}
+                    />
+                </CSSTransition>
+            </SwitchTransition>
+            }
             <div className={`track ${minimizedTrack ? 'minimized' : 'maximized'}`}>
                 {cards}
             </div>

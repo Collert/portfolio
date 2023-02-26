@@ -18,6 +18,10 @@ export default function Card(props) {
     }
     },[props]);
 
+    const switchCard = React.useCallback(() => {
+        props.setMaximizedCard({...props});
+    },[props]);
+
     React.useEffect(() => {
         setTimeout(() => {
             const offset = thisElement.current.getBoundingClientRect()
@@ -37,7 +41,7 @@ export default function Card(props) {
         <div className={props.maximizedCard && props.maximizedCard.id === props.id ? 'to-expand' : ''}>
             <img 
                 id={props.id} 
-                onClick={expandCard} 
+                onClick={props.minimizedTrack ? switchCard : expandCard} 
                 ref={thisElement} 
                 style={styles} 
                 alt='' 

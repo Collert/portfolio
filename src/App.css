@@ -9,7 +9,7 @@ header {
   width: 100dvw;
   display: grid;
   place-items: center;
-  z-index: 3;
+  z-index: 20;
 }
 
 header>nav {
@@ -38,7 +38,7 @@ a {
   color: var(--text-color);
 } 
 
-a::before {
+a::after {
   content: "";
   position: absolute;
   display: block;
@@ -51,6 +51,6 @@ a::before {
   transition: transform var(--a-animation-duration) ease;
 }
 
-a:hover::before {
+a:hover::after {
   transform: scaleX(1);
 }
