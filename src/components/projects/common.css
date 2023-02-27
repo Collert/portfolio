@@ -1,0 +1,83 @@
+.heading {
+    height: 100vh;
+    width: 100vw;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: grid;
+    place-items: center start;
+    grid-template-columns: 2fr 1fr;
+}
+
+@keyframes reveal {
+    from {
+        transform: translateY(100%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+@keyframes reveal-gradient {
+    from {
+        background-position-x: 500px;
+    }
+    to {
+        background-position-x: 0px;
+    }
+}
+
+.heading h1 {
+    font-size: 45px;
+    font-weight: 200;
+    letter-spacing: 0.3rem;
+}
+
+.heading h3 {
+    font-weight: 500;
+}
+
+.buzz-words *:has(span.reveal-text) {
+    height: fit-content;
+    overflow: hidden;
+}
+
+.buzz-words {
+    display: grid;
+    box-sizing: border-box;
+    padding: 2rem;
+    width: 100%;
+    height: 100%;
+    animation: reveal-gradient 1s var(--animation-timing-function);
+    background-repeat: no-repeat;
+    background-image: linear-gradient(90deg, rgba(0,0,0,0) 0%, rgba(0, 0, 0, 0.4) 75%);
+    text-align: start;
+}
+
+@keyframes scroll-down-blink {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: .4;
+    }
+}
+
+.buzz-words>div.bot {
+    place-items: end start;
+    animation: scroll-down-blink 1.5s ease 7 alternate-reverse;
+    height: 100%;
+}
+
+.buzz-words>div {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.heading span {
+    display: block;
+}
+
+.reveal-text {
+    animation: reveal 1s var(--animation-timing-function);
+}

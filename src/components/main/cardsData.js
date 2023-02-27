@@ -10,7 +10,7 @@ const cardsData = [
         id:'2',
         title:'SFStudio',
         imgSrc:'./assets/sfstudio-landscape.jpg',
-        blindImg:'',
+        blindImg:'./assets/sfstudio-blind.jpg',
         link:'/sfstudio'
     },
     {
