@@ -2,22 +2,30 @@ const cardsData = [
     {
         id:'1',
         title:'I/O VE',
-        imgSrc:'./assets/iove-landscape.jpg'
+        imgSrc:'./assets/iove-landscape.jpg',
+        blindImg:'./assets/iove-blind.jpg',
+        link:'/iove'
     },
     {
         id:'2',
         title:'SFStudio',
-        imgSrc:'./assets/sfstudio-landscape.jpg'
+        imgSrc:'./assets/sfstudio-landscape.jpg',
+        blindImg:'',
+        link:'/sfstudio'
     },
     {
         id:'3',
         title:'Ridna Library',
-        imgSrc:'./assets/library-landscape.jpg'
+        imgSrc:'./assets/library-landscape.jpg',
+        blindImg:'',
+        link:'/ridnalibrary'
     },
     {
         id:'4',
         title:'HEUCC',
-        imgSrc:'./assets/heucc-landscape.jpg'
+        imgSrc:'./assets/heucc-landscape.jpg',
+        blindImg:'',
+        link:'/heucc'
     },
     // {
     //     id:'5',

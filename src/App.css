@@ -12,6 +12,10 @@ header {
   z-index: 20;
 }
 
+header.back {
+  place-items: center start;
+}
+
 header>nav {
   display: grid;
   place-items: center;

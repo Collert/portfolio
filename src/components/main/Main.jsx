@@ -110,7 +110,11 @@ export default function Main(props) {
             minimizedTrack={minimizedTrack}
             firstInteraction={firstInteraction}
             setFirstInteraction={setFirstInteraction}
-            title={card.title}
+            expandedProps={{
+                title: card.title,
+                blindImg: card.blindImg,
+                link: card.link
+            }}
         />
     ))
 
@@ -132,7 +136,9 @@ export default function Main(props) {
                         setSliderX={setSliderX}
                         cardsQty={cards.length}
                         setFirstInteraction={setFirstInteraction}
-                        title={maximizedCard.title}
+                        title={maximizedCard.expandedProps.title}
+                        blindImg={maximizedCard.expandedProps.blindImg}
+                        link={maximizedCard.expandedProps.link}
                     />
                 </CSSTransition>
             </SwitchTransition>

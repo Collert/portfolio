@@ -18,6 +18,10 @@ body {
   color: var(--text-color);
 }
 
+main.project {
+  overflow: auto;
+}
+
 body:has(.project) {
   overflow: auto;
 }
