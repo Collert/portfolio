@@ -2,7 +2,7 @@ import React from 'react'
 import './RidnaLibrary.css'
 import './common.css'
 
-export default function SFStudio() {
+export default function RidnaLibrary() {
     return (
         <main className='project'>
             <section className='heading ridna-library'>

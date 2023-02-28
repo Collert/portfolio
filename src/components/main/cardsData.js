@@ -24,7 +24,7 @@ const cardsData = [
         id:'4',
         title:'HEUCC',
         imgSrc:'./assets/heucc-landscape.jpg',
-        blindImg:'',
+        blindImg:'./assets/heucc-blind.jpg',
         link:'/heucc'
     },
     // {
