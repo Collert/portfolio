@@ -17,7 +17,7 @@ const cardsData = [
         id:'3',
         title:'Ridna Library',
         imgSrc:'./assets/library-landscape.jpg',
-        blindImg:'',
+        blindImg:'./assets/library-blind.jpg',
         link:'/ridnalibrary'
     },
     {
