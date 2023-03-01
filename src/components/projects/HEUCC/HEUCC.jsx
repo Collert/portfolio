@@ -1,11 +1,11 @@
 import React from 'react'
 import './HEUCC.css'
-import './common.css'
+import '../common.css'
 
 export default function HEUCC() {
     return (
         <main className='project'>
-            <section className='heading heucc'>
+            <section className='heading righty heucc'>
                 <div></div>
                 <div className='buzz-words'>
                     <div>

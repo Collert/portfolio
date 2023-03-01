@@ -1,11 +1,11 @@
 import React from 'react'
 import './SFStudio.css'
-import './common.css'
+import '../common.css'
 
 export default function SFStudio() {
     return (
         <main className='project'>
-            <section className='heading sfstudio'>
+            <section className='heading righty sfstudio'>
                 <div></div>
                 <div className='buzz-words'>
                     <div>

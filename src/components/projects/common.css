@@ -6,7 +6,14 @@
     background-size: cover;
     display: grid;
     place-items: center start;
+}
+
+section.righty {
     grid-template-columns: 2fr 1fr;
+}
+
+section.lefty {
+    grid-template-columns: 1fr 2fr;
 }
 
 @keyframes reveal {

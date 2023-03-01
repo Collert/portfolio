@@ -1,11 +1,11 @@
 import React from 'react'
 import './RidnaLibrary.css'
-import './common.css'
+import '../common.css'
 
 export default function RidnaLibrary() {
     return (
         <main className='project'>
-            <section className='heading ridna-library'>
+            <section className='heading righty ridna-library'>
                 <div></div>
                 <div className='buzz-words'>
                     <div>

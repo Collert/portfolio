@@ -11,7 +11,6 @@ export default function Main(props) {
     const [isMouseDown, setIsMouseDown] = React.useState(false)
     const [startPoint, setStartPoint] = React.useState(0)
     const windowMaxDelta = window.innerWidth / 2
-    const [scroll, setScroll] = React.useState(0)
     const [maximizedCard, setMaximizedCard] = React.useState(null)
     const [minimizedTrack, setMinimizedTrack] = React.useState(false)
     const [firstInteraction, setFirstInteraction] = React.useState(true)
@@ -36,7 +35,6 @@ export default function Main(props) {
         setTimeout(() => {
             setFirstInteraction(false)
         }, 100);
-        setScroll(prev => prev + moveBy)
     },[windowMaxDelta])
 
     function mouseDown(e) {
@@ -120,7 +118,6 @@ export default function Main(props) {
 
     return (
         <main>
-            <div className='mousetracker'> SliderX: {sliderX} Mouse X: { (sliderX / windowMaxDelta) * 100 }%   window: {window.innerWidth} Scroll: {scroll} sliderX:{sliderX / windowMaxDelta}</div>
             {maximizedCard && 
             <SwitchTransition mode='in-out'>
                 <CSSTransition key={maximizedCard.id} classNames='card-swap' timeout={800}>

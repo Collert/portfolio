@@ -1,11 +1,11 @@
 import React from 'react'
 import './Iove.css'
-import './common.css'
+import '../common.css'
 
 export default function Iove() {
     return (
     <main className='project'>
-        <section className='heading iove'>
+        <section className='heading righty iove'>
             <div></div>
             <div className='buzz-words'>
                 <div>
@@ -18,6 +18,9 @@ export default function Iove() {
                 </div>
                 <div className='bot'><small><span className='reveal-text'>Scroll down</span></small></div>
             </div>
+        </section>
+        <section className='lefty'>
+            
         </section>
     </main>)
 }

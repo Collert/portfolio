@@ -7,10 +7,10 @@ import cardsData from './components/main/cardsData'
 import { CSSTransition, SwitchTransition } from 'react-transition-group';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import Test from './components/projects/Test';
-import RidnaLibrary from './components/projects/RidnaLibrary';
-import Iove from './components/projects/Iove';
-import SFStudio from './components/projects/SFStudio';
-import HEUCC from './components/projects/HEUCC';
+import RidnaLibrary from './components/projects/RidnaLibrary/RidnaLibrary';
+import Iove from './components/projects/IOVE/Iove';
+import SFStudio from './components/projects/SFStudio/SFStudio';
+import HEUCC from './components/projects/HEUCC/HEUCC';
 import React from 'react';
 
 function App() {
