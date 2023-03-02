@@ -1,0 +1,438 @@
+.swipe {
+    display: grid;
+    place-items: center;
+    height: 100%;
+}
+
+.swipe>div {
+    display: grid;
+    place-items: center;
+    gap: 3rem;
+}
+
+.stacksCollection {
+    aspect-ratio: 5/7;
+    /* position: absolute; */
+    width: 30vmin;
+}
+.stacksCollection.empty {
+    aspect-ratio: auto;
+    width: 70%;
+}
+
+.array-end {
+    display: grid;
+    place-items: center;
+    height: 100%;
+}
+
+.array-end * {
+    text-align: center;
+}
+
+.card {
+    aspect-ratio: 5/7;
+    position: absolute;
+    border-radius: 5px;
+    transition: transform 800ms cubic-bezier(.17,.42,.11,1.04), scale 800ms cubic-bezier(.17,.42,.11,1.04), box-shadow 300ms ease, border 200ms ease;
+    background-size: contain;
+    overflow: hidden;
+    box-shadow: -7px 1px 20px 10px rgba(0, 0, 0, 0.5);
+}
+
+.card>img {
+    border-radius: 5px;
+    min-width: 100%;
+    height: 100%;
+}
+
+.card.pfp>img {
+    position: absolute;
+    left: -25%;
+}
+
+.card .gradient{
+    position: absolute;
+    bottom: 0;
+    height: 50%;
+    width: 100%;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.815), transparent);
+}
+
+.card.hobby .gradient {
+    top: 0;
+    bottom: auto;
+    background: linear-gradient(0deg, transparent, rgba(0, 0, 0, 0.815));
+}
+
+.card.hobby .text{
+    position: absolute;
+    top: 1em;
+    left: 1em;
+    color: #e6e6e6;
+}
+
+.card.hobby .text h1,
+.card.hobby .text h2{
+    margin: 0;
+}
+
+.card.pfp span{
+    position: absolute;
+    bottom: 1em;
+    left: 1em;
+    font-size: x-large;
+    color: #e6e6e6;
+    font-weight: 700;
+}
+
+.big-card img:hover{
+    border-radius: 0;
+}
+
+.card.code {
+    background-color: #222222;
+}
+
+.card.code .top {
+    display: grid;
+    grid-template-columns: 25% 75%;
+    margin-top: 0.5rem;
+    gap: 0.5em;
+    margin-left: 0.4em;
+}
+
+.card.code .nav {
+    display: grid;
+    place-items: center;
+    grid-auto-flow: column;
+}
+
+.card.code .nav,
+.card.code .tab {
+    height: 1.7rem;
+}
+
+.card.code .nav>span {
+    display: block;
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+}
+
+.card.code .nav>span:nth-child(1) {
+    background-color: #ff5f57;
+}
+
+.card.code .nav>span:nth-child(2) {
+    background-color: #febc2e;
+}
+
+.card.code .nav>span:nth-child(3) {
+    background-color: #28c840;
+}
+
+.card.code .tab{
+    width: 7rem;
+    background-color: #1e1e1e;
+    border-radius: 5px 5px 0 0;
+    color: #e6e6e6;
+    display: grid;
+    place-items: center;
+    font-family: monospace;
+}
+
+pre {
+    margin-top: 0!important;
+}
+
+.card.maximized {
+    transform: none!important;
+    scale: 200%;
+    z-index: 10;
+    box-shadow: 0 0 0 100vmax rgba(0, 0, 0, 0.5);
+}
+
+.card-stack {
+    aspect-ratio: 5/7;
+    width: 30vmin;
+    display: grid;
+    place-items: center;
+    transition: all 400ms ease;
+}
+
+.card-stack.invisible {
+    display: none;
+}
+
+.big-card {
+    width: 30vmin;
+}
+
+.big-card.bio{
+    background-color: rgb(156, 156, 156);
+    display: flex;
+    flex-direction: column;
+    box-sizing: content-box;
+}
+
+.big-card.bio>* {
+    margin: 0 10px;
+}
+
+.big-card.bio>*:nth-child(1) {
+    margin-top: 10px;
+}
+
+.big-card.bio>*:nth-last-child(1) {
+    margin-bottom: 10px;
+}
+
+/* We have to do all this stuff with margin because padding inside of a card would grow the card and box-sizing: border-box would shift the content on hover */
+
+.big-card.bio h1 {
+    color: #e6e6e6;
+    margin-bottom: 3rem;
+}
+
+.big-card.bio h2,
+.big-card.bio h5 {
+    color: #e6e6e6;
+    margin-bottom: 0;
+}
+
+.big-card.bio h5 {
+    margin: 0;
+}
+
+.lifestyle,
+.background {
+    display: grid;
+    gap: 1rem;
+}
+
+.lifestyle img {
+    max-width: 25px;
+    margin-right: 10px;
+}
+
+.lifestyle span,
+.background span {
+    background-color: gray;
+    display: block;
+    color: #e6e6e6;
+    padding: 5px;
+    border-radius: 7px;
+    margin: .12rem .3rem;
+    width: fit-content;
+}
+
+.background>div {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.lifestyle .ido {
+    display: grid;
+    grid-template-columns: auto auto;
+}
+
+.big-card.bio>.bio-text{
+    background-color: gray;
+    border-radius: 5px;
+    color: #e6e6e6;
+    padding: 0.5em;
+    height: 100%;
+}
+
+.card.maximized.bio {
+    overflow-y: auto;
+}
+
+.little-card {
+    width: 12vmin;
+}
+
+.card:nth-child(2) {
+    transform: translate(-10%) rotate(-3deg);
+}
+.card-stack:hover > .card:nth-child(2),
+.card-stack.editing > .card:nth-child(2) {
+    transform: translate(-60%) rotate(-8deg);
+}
+.card-stack:hover > .card:nth-child(1),
+.card-stack.editing > .card:nth-child(1) {
+    transform: translate(-220%, -150%) rotate(14deg);
+}
+.card:nth-child(4) {
+    transform: rotate(-2deg);
+}
+.card-stack:hover > .card:nth-child(4),
+.card-stack.editing > .card:nth-child(4) {
+    transform: translate(-38%) rotate(-4deg);
+}
+.card-stack:hover > .card:nth-child(3),
+.card-stack.editing > .card:nth-child(3) {
+    transform: translate(-295%, 120%) rotate(-26deg);
+}
+.card:nth-child(6) {
+    transform: translate(5%) rotate(3deg);
+}
+.card-stack:hover > .card:nth-child(5),
+.card-stack.editing > .card:nth-child(5) {
+    transform: translate(175%, 160%) rotate(14deg);
+}
+.card:nth-child(8) {
+    transform: translate(1%) rotate(1deg);
+}
+.card-stack:hover > .card:nth-child(8),
+.card-stack.editing > .card:nth-child(8) {
+    transform: translate(30%) rotate(12deg);
+}
+.card-stack:hover > .card:nth-child(7),
+.card-stack.editing > .card:nth-child(7) {
+    transform: translate(202%, -150%) rotate(-16deg);
+}
+.big_note {
+    position: relative;
+    right: 20%;
+    margin-top: -1.5rem;
+}
+.little-card.music h3 {
+    margin: 0.2em 0 0 0;
+    padding: 0.2rem;
+    text-align: center;
+    color: #e6e6e6;
+}
+
+@keyframes jiggle-note {
+    0% {transform: rotate(0deg)}
+    25% {transform: rotate(20deg)}
+    /* 50% {transform: rotate(0deg)} */
+    75% {transform: rotate(-10deg)}
+    100% {transform: rotate(0deg)}
+}
+
+.little-card:hover svg {
+    animation: jiggle-note 2000ms ease infinite;
+}
+
+.handleUndefined {
+    text-align: center;
+}
+.little-card.card {
+    overflow-wrap: break-word;
+}
+@media (orientation: portrait) {
+    .card.pfp span {
+        font-size: medium;
+    }
+    h1 {
+        /* font-size: large; */
+        /* margin-bottom: 1rem!important; */
+    }
+    .big-card.bio{
+        font-size: x-small;
+    }
+    .big-card.bio h1{
+        margin-bottom: 1rem;
+    }
+    .lifestyle, .background {
+        gap: .5rem;
+    }
+    .lifestyle span, .background span {
+        margin: 0;
+    }
+    .background>div{
+        gap: .3rem;
+    }
+    .lifestyle img {
+        max-width: 1rem;
+        margin-right: 0;
+    }
+    .card.code .tab {
+        width: 6.5rem;
+        font-size: x-small;
+    }
+    .card.hobby .text h1, .card.hobby .text h2{
+        font-size: x-small;
+        margin-bottom: 0;
+    }
+    .little-card.music h3{
+        font-size: 0.5em;
+    }
+    .big_note {
+        display: block;
+        width: 2.5em;
+        right: 10%;
+        margin-top: -.5rem;
+    }
+    .card-stack:hover > .card:nth-child(1), 
+    .card-stack.editing > .card:nth-child(1), 
+    .card:nth-child(1) {
+        transform: translate(-310%, -217%) rotate(-6deg);
+    }
+    .card-stack:hover > .card:nth-child(2), 
+    .card-stack.editing > .card:nth-child(2), 
+    .card:nth-child(2) {
+        transform: translate(-60%, -49%) rotate(9deg);
+    }
+    .card-stack:hover > .card:nth-child(3), 
+    .card-stack.editing > .card:nth-child(3), 
+    .card:nth-child(3) {
+        transform: translate(-307%, 266%) rotate(-26deg);
+    }
+    .card-stack:hover > .card:nth-child(4), 
+    .card-stack.editing > .card:nth-child(4), 
+    .card:nth-child(4) {
+        transform: translate(-64%, 50%) rotate(-4deg);
+    }
+    .card-stack:hover > .card:nth-child(5), 
+    .card-stack.editing > .card:nth-child(5), 
+    .card:nth-child(5) {
+        transform: translate(228%, 300%) rotate(-6deg);
+    }
+    .card-stack:hover > .card:nth-child(6), 
+    .card-stack.editing > .card:nth-child(6), 
+    .card:nth-child(6) {
+        transform: translate(50%, -45%) rotate(-3deg);
+    }
+    .card-stack:hover > .card:nth-child(7), 
+    .card-stack.editing > .card:nth-child(7), 
+    .card:nth-child(7) {
+        transform: translate(292%, -240%) rotate(-16deg);
+    }
+    .card-stack:hover > .card:nth-child(8), 
+    .card-stack.editing > .card:nth-child(8), 
+    .card:nth-child(8) {
+        transform: translate(46%, 53%) rotate(12deg);
+    }
+    .swipe>div {
+        height: 100%;
+        gap: 0rem;
+        grid-auto-rows: 4fr 1fr;
+        width: 100vw;
+    }
+    .big-card:hover {
+        border: none;
+    }
+    .card.maximized {
+        border: 1px #e6e6e6 solid;
+        scale: 300%;
+    }
+    .card.maximized.editing {
+        scale: 200%;
+    }
+    .little-card.card>h1{
+        font-size: 4vw;
+    }
+    pre {
+        padding: 0 0.3rem!important;
+        width: 8.4em!important;
+    }
+    pre>code {
+        display: inline-block;
+        width: 100%!important;
+        font-size: 7px!important;
+    }
+}

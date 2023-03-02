@@ -1,3 +1,23 @@
-.heading.iove {
+.iove .heading {
     background-image: url(../../../../public/assets/iove-blind.jpg);
+}
+
+.iove section.lefty,
+.iove section.righty:not(:has(.buzz-words)) {
+    grid-template-columns: 1fr 1fr;
+}
+
+.iove .sig-text h2 {
+    font-size: 40px;
+    letter-spacing: 0.2rem;
+    font-weight: 400;
+}
+
+.iove .img-container.full img {
+    width: 80%;
+}
+
+.iove .img-container img {
+    border-radius: 10px;
+    box-shadow: 5px 5px 26px 3px black;
 }

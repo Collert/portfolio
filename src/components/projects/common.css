@@ -4,16 +4,52 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    display: grid;
     place-items: center start;
+    padding: 0;
+}
+
+section {
+    display: grid;
+    width: 100%;
+    padding: 2rem 0;
+    margin-bottom: 3rem;
+}
+
+.sig-text {
+    display: grid;
+}
+
+.sig-text p {
+    font-size: 20px;
 }
 
 section.righty {
     grid-template-columns: 2fr 1fr;
 }
 
+section.righty>div:nth-child(1) {
+    padding: 2rem;
+}
+
 section.lefty {
     grid-template-columns: 1fr 2fr;
+}
+section.lefty .sig-text {
+    place-items: center start;
+}
+
+section.righty .sig-text {
+    place-items: center end;
+    text-align: end;
+}
+
+.img-container {
+    display: grid;
+    place-items: center;
+}
+
+section.lefty>div:nth-child(2) {
+    padding: 2rem;
 }
 
 @keyframes reveal {
