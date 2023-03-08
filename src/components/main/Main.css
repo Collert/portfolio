@@ -68,7 +68,39 @@ main {
     animation: minimize-track-img 1.5s var(--animation-timing-function);
 }
 
-@keyframes expand-card {
+@keyframes expand-card-landscape {
+    from {
+        height: var(--card-height);
+        width: var(--card-width);
+        left: var(--expanded-card-start);
+        transform: none;
+        background-position: var(--expanding-image-object-pos) center;
+    }
+    75% {
+        height: var(--card-height);
+        width: var(--card-width);
+        left: var(--expanded-card-start);
+        margin-left: 0;
+        background-position: center;
+        transform: translateX(calc(50vw - (var(--card-width)/2) - var(--expanded-card-start)));
+    }
+    99.99% {
+        height: 100dvh;
+        width: 100vw;
+        left: var(--expanded-card-start);
+        margin-left: calc(-1 * (50vw - (var(--card-width)/2)));
+        background-position: center;
+        transform: translateX(calc(50vw - (var(--card-width)/2) - var(--expanded-card-start)));
+    }
+    to {
+        height: 100dvh;
+        width: 100vw;
+        margin-left: 0;
+        left: 0;
+        transform: none;
+    }
+}
+@keyframes expand-card-portrait {
     from {
         height: var(--card-height);
         width: var(--card-width);
@@ -127,7 +159,7 @@ main {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    animation: expand-card var(--animation-duration) var(--animation-timing-function);
+    animation: expand-card-landscape var(--animation-duration) var(--animation-timing-function);
 }
 
 .de-expanded {
@@ -236,4 +268,58 @@ main {
     color: white;
     top: 0;
     left: 0;
+}
+
+@keyframes rotate-blob {
+    from {
+        rotate: 0deg;
+    }
+    to {
+        rotate: 360deg;
+    }
+}
+
+.blob {
+    width: 20vw;
+    aspect-ratio: 1;
+    position: absolute;
+    background: linear-gradient(90deg, rgba(209,175,148,.5) 0%, rgba(175,182,178,.5) 100%);
+    background-position: -50%;
+    top: 50vh;
+    left: 50vw;
+    border-radius: 50%;
+    animation: rotate-blob 10s linear infinite;
+    filter: blur(4.5rem);
+    transform-origin: top left;
+    transform: translate(-50%, -50%);
+    z-index: -20;
+}
+
+@media (orientation: portrait) {
+    .track{
+        flex-direction: column;
+        transform: translateY(calc(var(--move-track) + 50% - (var(--card-height)/2) - 5px));
+    }
+    @keyframes fade-out-track {
+        from {
+            opacity: 1;
+        }
+        to {
+            opacity: 0;
+        }
+    }
+    .track.minimized {
+        animation: fade-out-track 1s ease forwards;
+        /* flex-direction: row; */
+    }
+    *::-webkit-scrollbar {
+        -webkit-appearance: none;
+    }
+    /* .track img {
+        width: var(--card-height);
+        height: var(--card-width);
+        object-fit: cover;
+        object-position: center calc(-1 * var(--move-track));
+        cursor: pointer;
+    } */
 }

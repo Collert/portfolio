@@ -14,6 +14,7 @@ export default function Main(props) {
     const [maximizedCard, setMaximizedCard] = React.useState(null)
     const [minimizedTrack, setMinimizedTrack] = React.useState(false)
     const [firstInteraction, setFirstInteraction] = React.useState(true)
+    const blob = React.useRef()
 
     const scrolls = React.useCallback((e) => {
         let moveBy;
@@ -44,6 +45,15 @@ export default function Main(props) {
 
     function mouseUp(e) {
         setIsMouseDown(false)
+    }
+
+    function moveBlob(e) {
+        const {clientX, clientY} = e
+
+        blob.current.animate({
+            top: `${clientY}px`,
+            left: `${clientX}px`
+        }, {duration:3000, fill:'forwards'})
     }
 
     const mouseMove = React.useCallback((e) => {
@@ -79,7 +89,8 @@ export default function Main(props) {
         window.removeEventListener('mouseup', mouseUp)
         window.removeEventListener('mousedown', mouseDown)
         window.removeEventListener('mousemove', mouseMove)
-    },[mouseMove, scrolls])
+        if (!props.isPortrait) {window.removeEventListener('mousemove', moveBlob)}
+    },[mouseMove, scrolls, props.isPortrait])
 
     React.useEffect(() => {
         
@@ -87,9 +98,10 @@ export default function Main(props) {
         window.addEventListener('mousedown', mouseDown)
         window.addEventListener('mouseup', mouseUp)
         window.addEventListener('wheel', scrolls)
+        if (!props.isPortrait) {window.addEventListener('mousemove', moveBlob)}
 
         return clearListeners
-    },[isMouseDown, sliderX, startPoint, windowMaxDelta, clearListeners, mouseMove, scrolls])
+    },[isMouseDown, sliderX, startPoint, windowMaxDelta, clearListeners, mouseMove, scrolls, props.isPortrait])
 
     React.useEffect(() => {
         let percentage = sliderX / windowMaxDelta * 100
@@ -108,6 +120,7 @@ export default function Main(props) {
             minimizedTrack={minimizedTrack}
             firstInteraction={firstInteraction}
             setFirstInteraction={setFirstInteraction}
+            isPortrait={props.isPortrait}
             expandedProps={{
                 title: card.title,
                 blindImg: card.blindImg,
@@ -144,6 +157,7 @@ export default function Main(props) {
                 {cards}
             </div>
             <div className='blind'></div>
+            {!props.isPortrait && <div ref={blob} className='blob'></div>}
         </main>
     )
 }

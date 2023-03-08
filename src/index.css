@@ -13,7 +13,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   height: 100vh;
   width: 100vw;
-  background-color: #242424;
+  background-color: var(--body-background-color);
   overflow: hidden;
   color: var(--text-color);
 }
@@ -45,6 +45,14 @@ img, .track {
   --a-animation-duration: 250ms;
   --transition-animation-duration: 500ms; /* Keep this in ms, it gets parsed in js later */
   --blind-cover-img: ;
+  --body-background-color: #242424;
+}
+
+@media (orientation: portrait) {
+  :root {
+    --card-width: 85vmin;
+    --card-height: 50vmin;
+  }
 }
 
 #root {

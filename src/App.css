@@ -58,3 +58,14 @@ a::after {
 a:hover::after {
   transform: scaleX(1);
 }
+
+@media (orientation: portrait) {
+  header::after {
+    content: '';
+    width: 100%;
+    height: 300%;
+    background: linear-gradient(180deg, var(--body-background-color) 65%, transparent 100%);
+    position: absolute;
+    z-index: -1;
+  }
+}

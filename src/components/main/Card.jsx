@@ -25,16 +25,22 @@ export default function Card(props) {
     React.useEffect(() => {
         setTimeout(() => {
             const offset = thisElement.current.getBoundingClientRect()
-            let percentage = (window.innerWidth - (offset.left + (offset.width / 2))) / window.innerWidth * 100
+            let percentage;
+            if (props.isPortrait) {
+                percentage = (window.innerHeight - (offset.top + (offset.height / 2))) / window.innerHeight * 100
+            } else {
+                percentage = (window.innerWidth - (offset.left + (offset.width / 2))) / window.innerWidth * 100
+            }
             percentage = Math.max(percentage, 0)
             percentage = Math.min(percentage, 100)
             setStyles({
-                objectPosition: `${percentage}% center`
+                objectPosition: props.isPortrait ? `center ${percentage}%` : `${percentage}% center`
             })
         }, 0);
     },[
         props.sliderPercentage, 
         props.minimizedTrack,
+        props.isPortrait
     ])
 
     return (
