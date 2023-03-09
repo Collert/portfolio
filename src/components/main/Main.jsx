@@ -66,35 +66,27 @@ export default function Main(props) {
     }
 
     const mouseMove = React.useCallback((e) => {
-        const timesPerSec = 1000
         const slowSwipeByFactor = 5
 
-        let wait = false;
         if (isMouseDown) {
-            if (!wait) {
-                let mouseDelta;
-                if (props.isPortrait) {
-                   mouseDelta = (e.clientY - startPoint) / slowSwipeByFactor
-                   setStartPoint(e.clientY)
-                } else {
-                   mouseDelta = e.clientX - startPoint
-                   setStartPoint(e.clientX)
-                }
-                setSliderX(prev => {
-                    let percentage = (prev + mouseDelta) / windowMaxDelta * 100
-                    if (percentage <= -100) {
-                        return -windowMaxDelta
-                    } else if (percentage >= 0) {
-                        return 0
-                    } else {
-                        return prev + mouseDelta
-                    }
-                })
-                wait = true
-                setTimeout(() => {
-                    wait = false
-                }, 1000 / timesPerSec);
+            let mouseDelta;
+            if (props.isPortrait) {
+                mouseDelta = (e.clientY - startPoint) / slowSwipeByFactor
+                setStartPoint(e.clientY)
+            } else {
+                mouseDelta = e.clientX - startPoint
+                setStartPoint(e.clientX)
             }
+            setSliderX(prev => {
+                let percentage = (prev + mouseDelta) / windowMaxDelta * 100
+                if (percentage <= -100) {
+                    return -windowMaxDelta
+                } else if (percentage >= 0) {
+                    return 0
+                } else {
+                    return prev + mouseDelta
+                }
+            })
             setTimeout(() => {
                 setFirstInteraction(false)
             }, 100);
