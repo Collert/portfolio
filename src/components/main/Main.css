@@ -302,15 +302,30 @@ main {
     }
     @keyframes fade-out-track {
         from {
+            transform: none;
             opacity: 1;
         }
         to {
+            transform: translateY(100vh);
             opacity: 0;
+        }
+    }
+    @keyframes fade-in-track {
+        from {
+            transform: translateY(100vh);
+            opacity: 0;
+        }
+        to {
+            transform: translateY(calc(var(--move-track) + 50% - (var(--card-height)/2) - 5px));
+            opacity: 1;
         }
     }
     .track.minimized {
         animation: fade-out-track 1s ease forwards;
-        /* flex-direction: row; */
+        transform: translateY(100vh);
+    }
+    .track.maximized {
+        animation: fade-in-track 1s ease;
     }
     *::-webkit-scrollbar {
         -webkit-appearance: none;

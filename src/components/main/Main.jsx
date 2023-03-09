@@ -43,6 +43,15 @@ export default function Main(props) {
         setIsMouseDown(true)
     }
 
+    function startTouchDrag(e) {
+        setStartPoint(e.changedTouches[0].clientY)
+        setIsMouseDown(true)
+    }
+
+    function endTouchDrag(e) {
+        setIsMouseDown(false)
+    }
+
     function mouseUp(e) {
         setIsMouseDown(false)
     }
@@ -53,16 +62,24 @@ export default function Main(props) {
         blob.current.animate({
             top: `${clientY}px`,
             left: `${clientX}px`
-        }, {duration:3000, fill:'forwards'})
+        }, {duration:1500, fill:'forwards'})
     }
 
     const mouseMove = React.useCallback((e) => {
-        const timesPerSec = 10
+        const timesPerSec = 1000
+        const slowSwipeByFactor = 5
+
         let wait = false;
         if (isMouseDown) {
             if (!wait) {
-                const mouseDelta = e.clientX - startPoint
-                setStartPoint(e.clientX)
+                let mouseDelta;
+                if (props.isPortrait) {
+                   mouseDelta = (e.clientY - startPoint) / slowSwipeByFactor
+                   setStartPoint(e.clientY)
+                } else {
+                   mouseDelta = e.clientX - startPoint
+                   setStartPoint(e.clientX)
+                }
                 setSliderX(prev => {
                     let percentage = (prev + mouseDelta) / windowMaxDelta * 100
                     if (percentage <= -100) {
@@ -82,15 +99,22 @@ export default function Main(props) {
                 setFirstInteraction(false)
             }, 100);
         }
-    },[isMouseDown, startPoint, windowMaxDelta])
+    },[isMouseDown, startPoint, windowMaxDelta, props.isPortrait])
+
+    const handleTouch = React.useCallback((e) => {
+        mouseMove(e.changedTouches[0])
+    },[mouseMove])
 
     const clearListeners = React.useCallback(() => {
         window.removeEventListener('wheel', scrolls)
         window.removeEventListener('mouseup', mouseUp)
         window.removeEventListener('mousedown', mouseDown)
         window.removeEventListener('mousemove', mouseMove)
+        window.removeEventListener('touchmove', handleTouch)
+        window.removeEventListener('touchstart', startTouchDrag)
+        window.removeEventListener('touchend', endTouchDrag)
         if (!props.isPortrait) {window.removeEventListener('mousemove', moveBlob)}
-    },[mouseMove, scrolls, props.isPortrait])
+    },[mouseMove, scrolls, props.isPortrait, handleTouch])
 
     React.useEffect(() => {
         
@@ -98,10 +122,21 @@ export default function Main(props) {
         window.addEventListener('mousedown', mouseDown)
         window.addEventListener('mouseup', mouseUp)
         window.addEventListener('wheel', scrolls)
+        window.addEventListener('touchmove', handleTouch)
+        window.addEventListener('touchstart', startTouchDrag)
+        window.addEventListener('touchend', endTouchDrag)
         if (!props.isPortrait) {window.addEventListener('mousemove', moveBlob)}
 
         return clearListeners
-    },[isMouseDown, sliderX, startPoint, windowMaxDelta, clearListeners, mouseMove, scrolls, props.isPortrait])
+    },[isMouseDown,
+        sliderX,
+        startPoint,
+        windowMaxDelta,
+        clearListeners,
+        mouseMove,
+        scrolls,
+        props.isPortrait,
+        handleTouch])
 
     React.useEffect(() => {
         let percentage = sliderX / windowMaxDelta * 100
