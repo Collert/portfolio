@@ -100,38 +100,6 @@ main {
         transform: none;
     }
 }
-@keyframes expand-card-portrait {
-    from {
-        height: var(--card-height);
-        width: var(--card-width);
-        left: var(--expanded-card-start);
-        transform: none;
-        background-position: var(--expanding-image-object-pos) center;
-    }
-    75% {
-        height: var(--card-height);
-        width: var(--card-width);
-        left: var(--expanded-card-start);
-        margin-left: 0;
-        background-position: center;
-        transform: translateX(calc(50vw - (var(--card-width)/2) - var(--expanded-card-start)));
-    }
-    99.99% {
-        height: 100dvh;
-        width: 100vw;
-        left: var(--expanded-card-start);
-        margin-left: calc(-1 * (50vw - (var(--card-width)/2)));
-        background-position: center;
-        transform: translateX(calc(50vw - (var(--card-width)/2) - var(--expanded-card-start)));
-    }
-    to {
-        height: 100dvh;
-        width: 100vw;
-        margin-left: 0;
-        left: 0;
-        transform: none;
-    }
-}
 
 @keyframes de-expand-card {
     from {
@@ -300,6 +268,38 @@ main {
         flex-direction: column;
         transform: translateY(calc(var(--move-track) + 50% - (var(--card-height)/2) - 5px));
     }
+    @keyframes expand-card-portrait {
+        from {
+            height: var(--card-height);
+            width: var(--card-width);
+            top: var(--expanded-card-start);
+            transform: none;
+            background-position: var(--expanding-image-object-pos);
+        }
+        75% {
+            height: var(--card-height);
+            width: var(--card-width);
+            top: var(--expanded-card-start);
+            margin-top: 0;
+            background-position: center;
+            transform: translateY(calc(50vh - (var(--card-height)/2) - var(--expanded-card-start)));
+        }
+        99.99% {
+            height: 100dvh;
+            width: 100vw;
+            top: var(--expanded-card-start);
+            margin-top: calc(-1 * (50vh - (var(--card-height)/2)));
+            background-position: center;
+            transform: translateY(calc(50vh - (var(--card-height)/2) - var(--expanded-card-start)));
+        }
+        to {
+            height: 100dvh;
+            width: 100vw;
+            margin-top: 0;
+            top: 0;
+            transform: none;
+        }
+    }
     @keyframes fade-out-track {
         from {
             transform: none;
@@ -330,11 +330,8 @@ main {
     *::-webkit-scrollbar {
         -webkit-appearance: none;
     }
-    /* .track img {
-        width: var(--card-height);
-        height: var(--card-width);
-        object-fit: cover;
-        object-position: center calc(-1 * var(--move-track));
-        cursor: pointer;
-    } */
+    .expanded{
+        z-index: 10;
+        animation: expand-card-portrait var(--animation-duration) var(--animation-timing-function) backwards;
+    }
 }

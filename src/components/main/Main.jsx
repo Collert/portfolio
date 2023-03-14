@@ -176,6 +176,7 @@ export default function Main(props) {
                         title={maximizedCard.expandedProps.title}
                         blindImg={maximizedCard.expandedProps.blindImg}
                         link={maximizedCard.expandedProps.link}
+                        isPortrait={props.isPortrait}
                     />
                 </CSSTransition>
             </SwitchTransition>
