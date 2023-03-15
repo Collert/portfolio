@@ -61,7 +61,7 @@ section.lefty>div:nth-child(2) {
     }
 }
 
-@keyframes reveal-gradient {
+@keyframes reveal-gradient-landscape {
     from {
         background-position-x: 500px;
     }
@@ -91,7 +91,7 @@ section.lefty>div:nth-child(2) {
     padding: 2rem;
     width: 100%;
     height: 100%;
-    animation: reveal-gradient 1s var(--animation-timing-function);
+    animation: reveal-gradient-landscape 1s var(--animation-timing-function);
     background-repeat: no-repeat;
     background-image: linear-gradient(90deg, rgba(0,0,0,0) 0%, rgba(0, 0, 0, 0.4) 75%);
     text-align: start;
@@ -117,10 +117,73 @@ section.lefty>div:nth-child(2) {
     gap: 1.5rem;
 }
 
-.heading span {
+.buzz-words span {
     display: block;
 }
 
 .reveal-text {
     animation: reveal 1s var(--animation-timing-function);
+}
+
+@media (orientation: portrait) {
+
+    :root {
+        --heading-side-margin: 1rem;
+    }
+
+
+
+    main {
+        max-width: 100vw;
+    }
+    img[src$=".gif"] {
+        max-width: 100vw;
+    }
+    section {
+        grid-template-columns: none!important;
+        grid-template-rows: 1fr 1fr;
+        margin-bottom: 0;
+        padding: 0;
+    }
+    section.righty .sig-text {
+        text-align: start;
+        place-items: start;
+    }
+    @keyframes squint-header {
+        from {
+            width: 100vw;
+            height: 100vh;
+            margin: 0;
+        }
+        to {
+            width: calc(100vw - var(--heading-side-margin) * 2);
+            height: 85vh;
+            margin: var(--heading-side-margin);
+        }
+    }
+    @keyframes reveal-gradient-portrait {
+        from {
+            background-position-y: 500px;
+        }
+        to {
+            background-position-y: 0px;
+        }
+    }
+    .heading {
+        width: calc(100vw - var(--heading-side-margin) * 2);
+        height: 85vh;
+        margin: var(--heading-side-margin);
+        box-sizing: border-box;
+        animation: squint-header 1s var(--animation-timing-function);
+    }
+    .buzz-words {
+        background-image: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0, 0, 0, 0.4) 75%);
+        text-align: start;
+        animation: reveal-gradient-portrait 1s var(--animation-timing-function);
+    }
+    .buzz-words.no-gradient {
+        background-image: none;
+        padding: 0 3rem;
+        box-sizing: border-box;
+    }
 }

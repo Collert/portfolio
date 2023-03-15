@@ -4,7 +4,7 @@ import './extra/swipe.css'
 import '../common.css'
 import CardStack from './extra/CardStack'
 
-export default function Iove() {
+export default function Iove(props) {
     return (
     <main className='project iove'>
         <section className='heading righty'>
@@ -12,15 +12,22 @@ export default function Iove() {
             <div className='buzz-words'>
                 <div>
                     <h1><span className='reveal-text'>The algorithm for finding love</span></h1>
-                    <h3><span className='reveal-text'>Full Stack Engineer</span></h3>
+                    { !props.isPortrait && <><h3><span className='reveal-text'>Full Stack Engineer</span></h3>
                     <p><span className='reveal-text'>
                         A dating app for programmers, designed to attract people with your code, not your looks.
                     </span></p>
-                    <h4><span className='reveal-text'>Designed as a passion project</span></h4>
+                    <h4><span className='reveal-text'>Designed as a passion project</span></h4></>}
                 </div>
                 <div className='bot'><small><span className='reveal-text'>Scroll down</span></small></div>
             </div>
         </section>
+        {props.isPortrait && <div className='buzz-words no-gradient'>
+            <h3><span className='reveal-text'>Full Stack Engineer</span></h3>
+            <p><span className='reveal-text'>
+                A dating app for programmers, designed to attract people with your code, not your looks.
+            </span></p>
+            <h4><span className='reveal-text'>Designed as a passion project</span></h4>
+        </div>}
         <section className='lefty'>
             <div className='swipe'>
                 <CardStack/>
