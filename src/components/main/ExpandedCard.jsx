@@ -10,9 +10,6 @@ export default function ExpandedCard(props) {
         const {imgSrc, id, blindImg} = props
         const refElement = document.getElementById(id)
         const objectPos = refElement.style.objectPosition.slice(0, -7)
-        const elementOffset = refElement.getBoundingClientRect()
-        console.log(elementOffset)
-        // document.documentElement.style.setProperty('--expanded-card-start', `${props.isPortrait ? elementOffset.top : elementOffset.left}px`)
         document.documentElement.style.setProperty('--expanding-image-object-pos', objectPos)
         document.documentElement.style.setProperty('--blind-cover-img', `url(${blindImg})`)
         setStyles({backgroundImage: `url('${imgSrc}')`})

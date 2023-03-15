@@ -11,8 +11,6 @@ export default function Card(props) {
     const expandCard = React.useCallback(() => {
         const elementOffset = thisElement.current.getBoundingClientRect()
         document.documentElement.style.setProperty('--expanded-card-start', `${props.isPortrait ? elementOffset.top : elementOffset.left}px`)
-        console.log('small: ')
-        console.log(thisElement.current.getBoundingClientRect())
 
     if (props.maximizedCard === null) {
         props.setMinimizedTrack(true)
